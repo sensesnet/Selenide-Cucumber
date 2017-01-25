@@ -1,0 +1,11 @@
+yandex mail:
+
+login: riskmarket.testoviy2016@yandex.ru
+password: test2016
+
+Risk Market account:
+
+login:
+riskmarket.testoviy2016@yandex.ru
+password:
+l0dcfJMB
