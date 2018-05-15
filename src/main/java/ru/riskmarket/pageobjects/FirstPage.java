@@ -9,7 +9,7 @@ public class FirstPage extends AbstractPage
 {
 
     @NameOfElement("Вход в кабинет")
-    @FindBy(xpath = "//button[.='Вход в кабинет']")
+    @FindBy(xpath = "//button[@class='btn progress-button buy-button']//ng-transclude[text()='Войти']")
     public SelenideElement enterToCabinet;
 
     @NameOfElement("Логин")
@@ -21,7 +21,7 @@ public class FirstPage extends AbstractPage
     public SelenideElement password;
 
     @NameOfElement("Войти")
-    @FindBy(css = "input[value='Войти']")
+    @FindBy(xpath = "//button[text()='Войти']")
     public SelenideElement enter;
 
     @NameOfElement("Фрейм входа в кабинет")
@@ -29,7 +29,7 @@ public class FirstPage extends AbstractPage
     public SelenideElement frameEnterToCabinet;
 
     @NameOfElement("Укажите страну")
-    @FindBy(css = "#countryInput")
+    @FindBy(xpath = "//countries-widget//div[@class='countries-widget__wrapper']//input")
     public SelenideElement countryInput;
 
     @NameOfElement("Даты поездки")
@@ -37,24 +37,24 @@ public class FirstPage extends AbstractPage
     public SelenideElement datesJourney;
 
     @NameOfElement("Выпадающий календарь")
-    @FindBy(css = ".period-control-popup")
+    @FindBy(xpath = "//div[@class='period-control__popup']")
     public SelenideElement popupCalendar;
 
-    @NameOfElement("Кто едет")
-    @FindBy(xpath = ".//*[.='Кто едет']")
+    @NameOfElement("Туристы")
+    @FindBy(xpath = ".//*[.='Туристы']")
     public SelenideElement whoIsTravel;
 
     @NameOfElement("дд.мм.гггг")
     @FindBy(xpath = ".//input[@placeholder='дд.мм.гггг']")
     public SelenideElement travelerBirthDate;
 
-    @NameOfElement("Рассчитать полис")
-    @FindBy(xpath = "//button[.='Рассчитать полис']")
+    @NameOfElement("Рассчитать")
+    @FindBy(xpath = "//button[.='Рассчитать']")
     public SelenideElement polisCount;
 
     public void clickAnyAvailableDate()
     {
-        popupCalendar.$(xpath("(./div[1]/button)[2]")).click();
+        popupCalendar.$(xpath("//button[@class ='period-control__popup-month-button period-control__popup-month-button--next']")).click();
         popupCalendar.$("span[data-ng-click]").click();
         popupCalendar.$("span[data-ng-click]").click();
     }

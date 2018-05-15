@@ -11,17 +11,18 @@ import ru.riskmarket.pageobjects.CustomConditions;
 import ru.riskmarket.pageobjects.FirstPage;
 import ru.riskmarket.pageobjects.SecondPage;
 import ru.riskmarket.pageobjects.ThirdPage;
-
 import java.util.List;
-
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.url;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class MyStepdefs
 {
 
+    private static final Logger log = LogManager.getLogger(MyStepdefs.class);
     FirstPage firstPage = page(FirstPage.class);
     SecondPage secondPage = page(SecondPage.class);
     ThirdPage thirdPage = page(ThirdPage.class);
@@ -29,6 +30,7 @@ public class MyStepdefs
     @Given("^open riskmarket\\.ru$")
     public void openRiskmarketRu()
     {
+        log.info("Try to open page!");
         open("http://riskmarket.ru");
     }
 
@@ -37,6 +39,7 @@ public class MyStepdefs
     {
         for (String str : countries)
         {
+            firstPage.get("Укажите страну").pressEnter();
             firstPage.get("Укажите страну").sendKeys(str);
             firstPage.get("Укажите страну").pressEnter();
         }
@@ -52,7 +55,7 @@ public class MyStepdefs
     @And("^specify birthday of tourists: (\\d+).(\\d+).(\\d+)$")
     public void specifyBirthdayOfTourists(String day, String month, String year)
     {
-        firstPage.get("Кто едет").click();
+        firstPage.get("Туристы").click();
         firstPage.get("дд.мм.гггг").sendKeys(day + month + year);
     }
 
@@ -91,13 +94,13 @@ public class MyStepdefs
     @And("^wait until login frame disappears$")
     public void waitUntilLoginFrameDisappears()
     {
-        firstPage.get("Фрейм входа в кабинет").waitUntil(Condition.disappears, 7000);
+        firstPage.get("Фрейм входа в кабинет").waitUntil(Condition.disappears, 9000);
     }
 
     @And("^wait until spinner disappears$")
     public void waitUntilSpinnerDisappears()
     {
-        secondPage.get("Spinner").waitUntil(Condition.disappears, 30000);
+        secondPage.get("Spinner").waitUntil(Condition.disappears, 40000);
     }
 
     @Then("^collection of \"([^\"]*)\" should not be empty$")

@@ -3,11 +3,15 @@ package ru.riskmarket.pageobjects;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.Field;
 
 public abstract class AbstractPage
 {
+
+    private static final Logger LOG = LogManager.getLogger(AbstractPage.class);
 
     public SelenideElement get(String cucumberElementName)
     {
@@ -25,7 +29,7 @@ public abstract class AbstractPage
 
                     } catch (IllegalAccessException e)
                     {
-                        System.out.println("ERROR: element with name " + cucumberElementName + " at page " + this.getClass().getName() + " is not public");
+                        LOG.info("ERROR: element with name " + cucumberElementName + " at page " + this.getClass().getName() + " is not public");
                     }
                 }
             }
@@ -50,7 +54,7 @@ public abstract class AbstractPage
 
                     } catch (IllegalAccessException e)
                     {
-                        System.out.println("ERROR: element with name " + cucumberElementName + " at page " + this.getClass().getName() + " is not public");
+                        LOG.info("ERROR: element with name " + cucumberElementName + " at page " + this.getClass().getName() + " is not public");
                     }
                 }
             }
